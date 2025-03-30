@@ -1,0 +1,10 @@
+{
+    "mcpServers": {
+      "mcp-test": {
+        "command": "C:\\projects\\dabidstudio_videos\\python_mcp_agent\\venv\\Scripts\\python.exe",
+        "args": [
+          "C:\\projects\\dabidstudio_videos\\python_mcp_agent\\mcp_server.py"
+        ]
+      }
+    }
+  }
