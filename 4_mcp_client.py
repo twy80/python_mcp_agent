@@ -37,21 +37,20 @@ async def setup_mcp_servers():
 # 에이전트 설정
 async def setup_agent():
     # 서버가 이미 존재하는지 확인하고, 없으면 생성
-    if 'mcp_servers' not in st.session_state:
-        st.session_state.mcp_servers = await setup_mcp_servers()
+    mcp_servers = await setup_mcp_servers()
     
     agent = Agent(
         name="Assistant",
         instructions="너는 유튜브 컨텐츠 분석을 도와주는 에이전트야",
         model="gpt-4o-mini",
-        mcp_servers=st.session_state.mcp_servers
+        mcp_servers=mcp_servers
     )
-    return agent
+    return agent,mcp_servers
 
 
 # 메시지 처리
 async def process_user_message():
-    agent = await setup_agent()
+    agent,mcp_servers = await setup_agent()
     messages = st.session_state.chat_history
 
     result = Runner.run_streamed(agent, input=messages)
@@ -81,7 +80,9 @@ async def process_user_message():
         "role": "assistant",
         "content": response_text
     })
-
+    # 명시적 종료 (streamlit에서 비동기 처리 오류 방지)
+    for server in mcp_servers:
+        await server.__aexit__(None, None, None)
 
 # Streamlit UI 메인
 def main():
@@ -107,14 +108,6 @@ def main():
         # 비동기 응답 처리
         asyncio.run(process_user_message())
         
-    # 애플리케이션 종료 시 MCP 서버 연결 종료를 위한 코드
-    # 이 부분은 Streamlit에서는 작동하지 않기 때문에 주석 처리
-    # import atexit
-    # async def cleanup():
-    #     if 'mcp_servers' in st.session_state:
-    #         for server in st.session_state.mcp_servers:
-    #             await server.__aexit__(None, None, None)
-    # atexit.register(lambda: asyncio.run(cleanup()))
 
 if __name__ == "__main__":
     main()
