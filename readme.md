@@ -5,10 +5,10 @@ YouTube 검색, 요약, 채널 분석 기능을 갖춘 유튜브 에이전트를
 
 ## MCP (Model Context Protocol) 소개
 - AI가 외부 데이터의 도구(Tools)에 효과적으로 연결할 수 있는 표준화된 방식
-- 특히 다양한 도구의 표준화된 연결로 많이 활되고 있음
+- 특히 다양한 도구의 표준화된 연결로 많이 활용되고 있음
     - **MCP Server**: 사용할 수 있는 도구(tool)를 정의하고 제공하는 역할  
     - **MCP Client**: 정의된 도구를 불러와 사용 (Claude Desktop, Cursor, OpenAI Agents SDK)
-
+- 이번 예제에서는 유튜브 컨텐츠 분석을 위한 MCP Server를 만들어보고, OpenAI Agents SDK 기반의 MCP Client와도 연결해볼 예정입니다.
 
 ![image](https://github.com/user-attachments/assets/02f2e463-a22b-4fdc-83b5-b97563b8d8fd)
 
