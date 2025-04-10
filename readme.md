@@ -39,7 +39,7 @@ YouTube 검색, 요약, 채널 분석 기능을 갖춘 유튜브 에이전트를
 
 
     ```bash
-    pip install mcp openai-agents streamlit youtube-transcript-api python-dotenv
+    pip install mcp openai-agents streamlit youtube-transcript-api python-dotenv requests
     ```
 
 
