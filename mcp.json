@@ -1,10 +1,16 @@
 {
-    "mcpServers": {
-      "mcp-test": {
-        "command": "C:\\projects\\dabidstudio_videos\\python_mcp_agent\\venv\\Scripts\\python.exe",
-        "args": [
-          "C:\\projects\\dabidstudio_videos\\python_mcp_agent\\2_mcp_server.py"
-        ]
+  "mcpServers": {
+    "google-search": {
+      "command": "uvx",
+      "args": ["mcp-google-cse"],
+      "env": {
+        "API_KEY": "$AIzaSyCxYkilp1SyeGzAGvU4idjtxhzjfBnUGmM",
+        "ENGINE_ID": "445477493f46346d6"
       }
+    },
+    "fetch": {
+      "command": "uvx",
+      "args": ["mcp-server-fetch"]
     }
   }
+}

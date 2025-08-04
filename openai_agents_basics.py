@@ -1,6 +1,4 @@
 from agents import Agent, Runner
-from dotenv import load_dotenv
-load_dotenv()
 def main():
 
     agent = Agent(
@@ -10,7 +8,8 @@ def main():
         )
     
     messages = []
-    while True:
+    user_input = ""
+    while user_input.lower() != "bye":
         user_input = input("\nYou: ")
         messages.append({"role": "user", "content": user_input})
         print("Assistant: ", end="")

@@ -2,11 +2,11 @@ import sys
 import asyncio
 import streamlit as st
 import json
+import os
 from openai.types.responses import ResponseTextDeltaEvent
 from agents import Agent, Runner
 from agents.mcp import MCPServerStdio
-from dotenv import load_dotenv
-load_dotenv()
+
 # Windows 호환성
 if sys.platform == "win32":
     asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
@@ -41,7 +41,7 @@ async def setup_agent():
     
     agent = Agent(
         name="Assistant",
-        instructions="너는 유튜브 컨텐츠 분석을 도와주는 에이전트야",
+        instructions="You are a helpful assistant.",
         model="gpt-4o-mini",
         mcp_servers=mcp_servers
     )
@@ -91,8 +91,8 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
 
-    st.title("🎥 유튜브 컨텐츠 에이전트")
-    st.caption("유튜브 컨텐츠 제작, 아이디어, 트렌드에 대해 물어보세요!")
+    st.title("🎥 Agent with MCP")
+    st.caption("You can use any MCP tool(s).")
 
     for m in st.session_state.chat_history:
         with st.chat_message(m["role"]):
@@ -111,3 +111,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+    if st.sidebar.button("Finish"):
+        os._exit(0)
