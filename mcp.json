@@ -1,16 +1,9 @@
 {
   "mcpServers": {
-    "google-search": {
-      "command": "uvx",
-      "args": ["mcp-google-cse"],
-      "env": {
-        "API_KEY": "$AIzaSyCxYkilp1SyeGzAGvU4idjtxhzjfBnUGmM",
-        "ENGINE_ID": "445477493f46346d6"
-      }
-    },
     "fetch": {
       "command": "uvx",
       "args": ["mcp-server-fetch"]
     }
   }
 }
+
